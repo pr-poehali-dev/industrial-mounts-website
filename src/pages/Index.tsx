@@ -446,7 +446,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Mail" size={18} />
-                  <span>info@example.com</span>
+                  <span>pack@isosystem.ru</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="MapPin" size={18} />
