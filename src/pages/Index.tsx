@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -29,6 +29,26 @@ const Index = () => {
   const handleNavClick = () => {
     setMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -195,7 +215,7 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {materials.map((material, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow animate-on-scroll">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Icon name={material.icon} size={24} className="text-primary" />
                 </div>
@@ -217,7 +237,7 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             {advantages.map((advantage, index) => (
-              <div key={index} className="flex gap-4">
+              <div key={index} className="flex gap-4 animate-on-scroll">
                 <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
                   <Icon name={advantage.icon} size={28} className="text-primary-foreground" />
                 </div>
@@ -243,7 +263,7 @@ const Index = () => {
             {portfolio.map((project, index) => (
               <Dialog key={index}>
                 <DialogTrigger asChild>
-                  <Card className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all">
+                  <Card className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all animate-on-scroll">
                     <div className="relative overflow-hidden aspect-square">
                       <img 
                         src={project.image} 
