@@ -450,7 +450,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="MapPin" size={18} />
-                  <span>г. Москва, ул. Промышленная, 1</span>
+                  <span>г. Самара, ул. Дзержинского, 46</span>
                 </div>
               </div>
             </div>
