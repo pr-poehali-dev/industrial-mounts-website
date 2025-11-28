@@ -68,15 +68,27 @@ const Index = () => {
   const portfolio = [
     {
       title: 'Защитная упаковка для электроники',
-      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/104d754b-a696-4c27-b273-0b8f5a16b4aa.jpg'
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/19ea6cd9-2a74-437d-8ff4-6d6062606bba.jpg'
     },
     {
       title: 'Ложементы для медицинского оборудования',
-      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/7061f706-5e16-4945-9a3f-70f1f2dde393.jpg'
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/015801cc-2f08-4103-919f-fd8f4d90bb48.jpg'
     },
     {
       title: 'Промышленная упаковка для инструментов',
-      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/54412ac0-0801-4d73-a690-444da45660a4.jpg'
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/7c72394f-e7a3-4922-919c-67b68e651e9e.jpg'
+    },
+    {
+      title: 'Защита оптического оборудования',
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/b72d94cc-dfe2-4e48-806d-1ac0e40cd3d6.jpg'
+    },
+    {
+      title: 'Упаковка для измерительных приборов',
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/07a795a3-02b5-4012-a55d-86dee2e20126.jpg'
+    },
+    {
+      title: 'Защита автомобильных комплектующих',
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/c894ab43-bb05-4032-b35c-e832dc9a9492.jpg'
     }
   ];
 
