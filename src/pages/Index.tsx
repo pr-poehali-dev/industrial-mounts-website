@@ -89,6 +89,36 @@ const Index = () => {
       title: 'Поролон',
       description: 'Классический материал для упаковки и комфортной защиты изделий',
       icon: 'Package'
+    },
+    {
+      title: 'Картон',
+      description: 'Экономичное решение для лёгкой упаковки и разделителей',
+      icon: 'FileText'
+    },
+    {
+      title: 'Вспененный ЭВА',
+      description: 'Мягкий и упругий материал с высокой износостойкостью',
+      icon: 'Layers'
+    },
+    {
+      title: 'Текстильный сепаратор',
+      description: 'Тканевая защита для деликатных и хрупких изделий',
+      icon: 'Shirt'
+    },
+    {
+      title: 'Пенопласт',
+      description: 'Легкий теплоизоляционный материал для объемной упаковки',
+      icon: 'Hexagon'
+    },
+    {
+      title: 'Экструдированный пенополистирол',
+      description: 'Высокопрочный материал с закрытой ячеистой структурой',
+      icon: 'Grid3x3'
+    },
+    {
+      title: 'МДВП',
+      description: 'Плотная древесноволокнистая плита для жестких конструкций',
+      icon: 'Square'
     }
   ];
 
@@ -248,14 +278,14 @@ const Index = () => {
               Работаем с широким спектром современных материалов
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
             {materials.map((material, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-shadow animate-on-scroll">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <Icon name={material.icon} size={24} className="text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">{material.title}</h3>
-                <p className="text-muted-foreground">{material.description}</p>
+                <p className="text-muted-foreground text-sm">{material.description}</p>
               </Card>
             ))}
           </div>
