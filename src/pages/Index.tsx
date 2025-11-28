@@ -18,6 +18,7 @@ const Index = () => {
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const navLinks = [
     { href: '#materials', label: 'Материалы' },
@@ -49,6 +50,19 @@ const Index = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -403,6 +417,17 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {showScrollTop && (
+        <Button
+          onClick={scrollToTop}
+          size="icon"
+          className="fixed bottom-8 right-8 z-40 rounded-full shadow-lg hover:shadow-xl transition-all"
+          aria-label="Наверх"
+        >
+          <Icon name="ArrowUp" size={24} />
+        </Button>
+      )}
     </div>
   );
 };
