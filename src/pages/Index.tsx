@@ -142,6 +142,27 @@ const Index = () => {
     }
   ];
 
+  const testimonials = [
+    {
+      name: 'Алексей Морозов',
+      company: 'ТехноПром',
+      text: 'Отличное качество ложементов для нашего измерительного оборудования. Все изделия выполнены точно в срок, материал прочный и надежный.',
+      rating: 5
+    },
+    {
+      name: 'Елена Соколова',
+      company: 'МедТехника',
+      text: 'Сотрудничаем уже второй год. Индивидуальный подход к каждому заказу, всегда идут навстречу. Рекомендуем!',
+      rating: 5
+    },
+    {
+      name: 'Игорь Петров',
+      company: 'ЭлектроКомплект',
+      text: 'Быстро изготовили партию защитных вкладышей для хрупкого оборудования. Упаковка выдержала транспортировку на 5000 км без повреждений.',
+      rating: 5
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
@@ -302,6 +323,33 @@ const Index = () => {
                   <p className="text-center text-lg font-semibold mt-4">{project.title}</p>
                 </DialogContent>
               </Dialog>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Отзывы клиентов</h2>
+            <p className="text-xl text-muted-foreground">
+              Что говорят о нас наши партнеры
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <Card key={index} className="p-6 animate-on-scroll">
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: testimonial.rating }).map((_, i) => (
+                    <Icon key={i} name="Star" size={20} className="text-yellow-500 fill-yellow-500" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground mb-6 italic">"{testimonial.text}"</p>
+                <div className="border-t pt-4">
+                  <p className="font-semibold">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.company}</p>
+                </div>
+              </Card>
             ))}
           </div>
         </div>
