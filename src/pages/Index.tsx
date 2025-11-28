@@ -438,11 +438,9 @@ const Index = () => {
             <div>
               <h3 className="font-semibold mb-4">Контакты</h3>
               <div className="space-y-2 text-muted-foreground">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 my-0">
                   <Icon name="Phone" size={18} />
-                  <span>+7 (937) 076-72-29
-
-+7 (846) 300-21-20</span>
+                  <span>+7 (937) 076-72-29,     +7 (846) 300-21-20</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Icon name="Mail" size={18} />
