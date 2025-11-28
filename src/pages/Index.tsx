@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 
 const Index = () => {
@@ -13,6 +14,8 @@ const Index = () => {
     email: '',
     message: ''
   });
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -199,19 +202,33 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {portfolio.map((project, index) => (
-              <Card key={index} className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all">
-                <div className="relative overflow-hidden aspect-square">
+              <Dialog key={index}>
+                <DialogTrigger asChild>
+                  <Card className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all">
+                    <div className="relative overflow-hidden aspect-square">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <Icon name="ZoomIn" size={48} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-lg font-semibold">{project.title}</h3>
+                    </div>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
                   <img 
                     src={project.image} 
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-auto rounded-lg"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold">{project.title}</h3>
-                </div>
-              </Card>
+                  <p className="text-center text-lg font-semibold mt-4">{project.title}</p>
+                </DialogContent>
+              </Dialog>
             ))}
           </div>
         </div>
