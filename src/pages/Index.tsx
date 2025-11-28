@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Icon from '@/components/ui/icon';
+import Header from '@/components/Header';
+import HeroSection from '@/components/HeroSection';
+import ContentSections from '@/components/ContentSections';
+import ContactSection from '@/components/ContactSection';
 
 const Index = () => {
   const [formData, setFormData] = useState({
@@ -195,306 +194,27 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Icon name="Factory" size={32} className="text-primary" />
-            <span className="text-2xl font-bold">ПромЛожементы</span>
-          </div>
-          <nav className="hidden md:flex gap-6">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="hover:text-primary transition-colors">
-                {link.label}
-              </a>
-            ))}
-          </nav>
-          <Button asChild className="hidden md:inline-flex">
-            <a href="#contact">Оставить заявку</a>
-          </Button>
-          
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
-                <Icon name="Menu" size={24} />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px]">
-              <div className="flex flex-col gap-6 mt-8">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={handleNavClick}
-                    className="text-lg font-medium hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-                <Button asChild className="w-full" onClick={handleNavClick}>
-                  <a href="#contact">Оставить заявку</a>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </header>
+      <Header 
+        navLinks={navLinks}
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        handleNavClick={handleNavClick}
+      />
 
-      <section className="pt-32 pb-20 px-4 bg-gradient-to-br from-background via-primary/5 to-background">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Производство ложементов и защитной упаковки
-              </h1>
-              <p className="text-xl text-muted-foreground mb-8">
-                Высокоточное изготовление изделий из НПЭ, ППЭ, вспененного каучука и поролона на современном оборудовании
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" asChild>
-                  <a href="#contact">Получить консультацию</a>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <a href="#portfolio">Наши работы</a>
-                </Button>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
-              <img 
-                src="https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/54412ac0-0801-4d73-a690-444da45660a4.jpg" 
-                alt="Промышленное производство"
-                className="relative rounded-2xl shadow-2xl w-full"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection />
 
-      <section id="materials" className="py-20 px-4 bg-card">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Материалы для производства</h2>
-            <p className="text-xl text-muted-foreground">
-              Работаем с широким спектром современных материалов
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {materials.map((material, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-shadow animate-on-scroll">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Icon name={material.icon} size={24} className="text-primary" />
-                </div>
-                <h3 className="text-lg font-semibold mb-2">{material.title}</h3>
-                <p className="text-muted-foreground text-sm">{material.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ContentSections 
+        materials={materials}
+        advantages={advantages}
+        portfolio={portfolio}
+        testimonials={testimonials}
+      />
 
-      <section id="advantages" className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Наши преимущества</h2>
-            <p className="text-xl text-muted-foreground">
-              Почему выбирают нас
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {advantages.map((advantage, index) => (
-              <div key={index} className="flex gap-4 animate-on-scroll">
-                <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Icon name={advantage.icon} size={28} className="text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2">{advantage.title}</h3>
-                  <p className="text-muted-foreground">{advantage.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" className="py-20 px-4 bg-card">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Наши работы</h2>
-            <p className="text-xl text-muted-foreground">
-              Примеры реализованных проектов
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {portfolio.map((project, index) => (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <Card className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all animate-on-scroll">
-                    <div className="relative overflow-hidden aspect-square">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <Icon name="ZoomIn" size={48} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-lg font-semibold">{project.title}</h3>
-                    </div>
-                  </Card>
-                </DialogTrigger>
-                <DialogContent className="max-w-4xl">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-auto rounded-lg"
-                  />
-                  <p className="text-center text-lg font-semibold mt-4">{project.title}</p>
-                </DialogContent>
-              </Dialog>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Отзывы клиентов</h2>
-            <p className="text-xl text-muted-foreground">
-              Что говорят о нас наши партнеры
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6 animate-on-scroll">
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Icon key={i} name="Star" size={20} className="text-yellow-500 fill-yellow-500" />
-                  ))}
-                </div>
-                <p className="text-muted-foreground mb-6 italic">"{testimonial.text}"</p>
-                <div className="border-t pt-4">
-                  <p className="font-semibold">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">{testimonial.company}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Оставьте заявку</h2>
-            <p className="text-xl text-muted-foreground">
-              Свяжемся с вами в течение часа
-            </p>
-          </div>
-          <Card className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Имя *</label>
-                  <Input 
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    placeholder="Ваше имя"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Компания</label>
-                  <Input 
-                    value={formData.company}
-                    onChange={(e) => setFormData({...formData, company: e.target.value})}
-                    placeholder="Название компании"
-                  />
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Телефон *</label>
-                  <Input 
-                    required
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    placeholder="+7 (___) ___-__-__"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Email *</label>
-                  <Input 
-                    required
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-2">Сообщение</label>
-                <Textarea 
-                  value={formData.message}
-                  onChange={(e) => setFormData({...formData, message: e.target.value})}
-                  placeholder="Опишите ваш проект..."
-                  rows={5}
-                />
-              </div>
-              <Button type="submit" size="lg" className="w-full">
-                Отправить заявку
-              </Button>
-            </form>
-          </Card>
-        </div>
-      </section>
-
-      <footer className="py-12 px-4 bg-card border-t">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Icon name="Factory" size={28} className="text-primary" />
-                <span className="text-xl font-bold">ПромЛожементы</span>
-              </div>
-              <p className="text-muted-foreground">
-                Производство защитной упаковки и ложементов из вспененных материалов
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Контакты</h3>
-              <div className="space-y-2 text-muted-foreground">
-                <div className="flex items-center gap-2 my-0">
-                  <Icon name="Phone" size={18} />
-                  <span>+7 (937) 076-72-29,     +7 (846) 300-21-20</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Mail" size={18} />
-                  <span>pack@isosystem.ru</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="MapPin" size={18} />
-                  <span>г. Самара, ул. Дзержинского, 46</span>
-                </div>
-              </div>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Режим работы</h3>
-              <div className="space-y-2 text-muted-foreground">
-                <p>Пн-Пт: 9:00 - 18:00</p>
-                <p>Сб-Вс: Выходной</p>
-              </div>
-            </div>
-          </div>
-          <div className="text-center text-muted-foreground pt-8 border-t">
-            <p>© 2024 ПромЛожементы. Все права защищены.</p>
-          </div>
-        </div>
-      </footer>
+      <ContactSection 
+        formData={formData}
+        setFormData={setFormData}
+        handleSubmit={handleSubmit}
+      />
 
       {showScrollTop && (
         <Button
