@@ -1,12 +1,320 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import Icon from '@/components/ui/icon';
 
 const Index = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+  };
+
+  const materials = [
+    {
+      title: 'НПЭ (Несшитый пенополиэтилен)',
+      description: 'Легкий, экологичный материал с отличными амортизирующими свойствами',
+      icon: 'Box'
+    },
+    {
+      title: 'ППЭ (Сшитый пенополиэтилен)',
+      description: 'Высокая плотность и прочность, идеален для защиты тяжелого оборудования',
+      icon: 'Shield'
+    },
+    {
+      title: 'Вспененный каучук',
+      description: 'Повышенная эластичность и долговечность, устойчив к агрессивным средам',
+      icon: 'Zap'
+    },
+    {
+      title: 'Поролон',
+      description: 'Классический материал для упаковки и комфортной защиты изделий',
+      icon: 'Package'
+    }
+  ];
+
+  const advantages = [
+    {
+      title: 'Современное оборудование',
+      description: 'Высокоточные станки с ЧПУ для резки любой сложности',
+      icon: 'Settings'
+    },
+    {
+      title: 'Индивидуальный подход',
+      description: 'Разработка решений под ваши конкретные задачи',
+      icon: 'Target'
+    },
+    {
+      title: 'Быстрое производство',
+      description: 'Сжатые сроки изготовления без потери качества',
+      icon: 'Rocket'
+    },
+    {
+      title: 'Контроль качества',
+      description: 'Проверка каждого изделия на всех этапах производства',
+      icon: 'CheckCircle'
+    }
+  ];
+
+  const portfolio = [
+    {
+      title: 'Защитная упаковка для электроники',
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/104d754b-a696-4c27-b273-0b8f5a16b4aa.jpg'
+    },
+    {
+      title: 'Ложементы для медицинского оборудования',
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/7061f706-5e16-4945-9a3f-70f1f2dde393.jpg'
+    },
+    {
+      title: 'Промышленная упаковка для инструментов',
+      image: 'https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/54412ac0-0801-4d73-a690-444da45660a4.jpg'
+    }
+  ];
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="min-h-screen">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Icon name="Factory" size={32} className="text-primary" />
+            <span className="text-2xl font-bold">ПромЛожементы</span>
+          </div>
+          <nav className="hidden md:flex gap-6">
+            <a href="#materials" className="hover:text-primary transition-colors">Материалы</a>
+            <a href="#advantages" className="hover:text-primary transition-colors">Преимущества</a>
+            <a href="#portfolio" className="hover:text-primary transition-colors">Портфолио</a>
+            <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
+          </nav>
+          <Button asChild className="hidden md:inline-flex">
+            <a href="#contact">Оставить заявку</a>
+          </Button>
+        </div>
+      </header>
+
+      <section className="pt-32 pb-20 px-4 bg-gradient-to-br from-background via-primary/5 to-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                Производство ложементов и защитной упаковки
+              </h1>
+              <p className="text-xl text-muted-foreground mb-8">
+                Высокоточное изготовление изделий из НПЭ, ППЭ, вспененного каучука и поролона на современном оборудовании
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" asChild>
+                  <a href="#contact">Получить консультацию</a>
+                </Button>
+                <Button size="lg" variant="outline" asChild>
+                  <a href="#portfolio">Наши работы</a>
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+              <img 
+                src="https://cdn.poehali.dev/projects/2d66b7de-bd0c-4c2b-987a-2fed6dbaeefd/files/54412ac0-0801-4d73-a690-444da45660a4.jpg" 
+                alt="Промышленное производство"
+                className="relative rounded-2xl shadow-2xl w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="materials" className="py-20 px-4 bg-card">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Материалы для производства</h2>
+            <p className="text-xl text-muted-foreground">
+              Работаем с широким спектром современных материалов
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {materials.map((material, index) => (
+              <Card key={index} className="p-6 hover:shadow-lg transition-shadow">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Icon name={material.icon} size={24} className="text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{material.title}</h3>
+                <p className="text-muted-foreground">{material.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="advantages" className="py-20 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Наши преимущества</h2>
+            <p className="text-xl text-muted-foreground">
+              Почему выбирают нас
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {advantages.map((advantage, index) => (
+              <div key={index} className="flex gap-4">
+                <div className="w-14 h-14 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Icon name={advantage.icon} size={28} className="text-primary-foreground" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2">{advantage.title}</h3>
+                  <p className="text-muted-foreground">{advantage.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" className="py-20 px-4 bg-card">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Наши работы</h2>
+            <p className="text-xl text-muted-foreground">
+              Примеры реализованных проектов
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {portfolio.map((project, index) => (
+              <Card key={index} className="overflow-hidden group cursor-pointer hover:shadow-xl transition-all">
+                <div className="relative overflow-hidden aspect-square">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold">{project.title}</h3>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary/10 via-background to-primary/5">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4">Оставьте заявку</h2>
+            <p className="text-xl text-muted-foreground">
+              Свяжемся с вами в течение часа
+            </p>
+          </div>
+          <Card className="p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Имя *</label>
+                  <Input 
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    placeholder="Ваше имя"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Компания</label>
+                  <Input 
+                    value={formData.company}
+                    onChange={(e) => setFormData({...formData, company: e.target.value})}
+                    placeholder="Название компании"
+                  />
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium mb-2">Телефон *</label>
+                  <Input 
+                    required
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    placeholder="+7 (___) ___-__-__"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Email *</label>
+                  <Input 
+                    required
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Сообщение</label>
+                <Textarea 
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  placeholder="Опишите ваш проект..."
+                  rows={5}
+                />
+              </div>
+              <Button type="submit" size="lg" className="w-full">
+                Отправить заявку
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </section>
+
+      <footer className="py-12 px-4 bg-card border-t">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Icon name="Factory" size={28} className="text-primary" />
+                <span className="text-xl font-bold">ПромЛожементы</span>
+              </div>
+              <p className="text-muted-foreground">
+                Производство защитной упаковки и ложементов из вспененных материалов
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Контакты</h3>
+              <div className="space-y-2 text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Icon name="Phone" size={18} />
+                  <span>+7 (___) ___-__-__</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Mail" size={18} />
+                  <span>info@example.com</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="MapPin" size={18} />
+                  <span>г. Москва, ул. Промышленная, 1</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">Режим работы</h3>
+              <div className="space-y-2 text-muted-foreground">
+                <p>Пн-Пт: 9:00 - 18:00</p>
+                <p>Сб-Вс: Выходной</p>
+              </div>
+            </div>
+          </div>
+          <div className="text-center text-muted-foreground pt-8 border-t">
+            <p>© 2024 ПромЛожементы. Все права защищены.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
